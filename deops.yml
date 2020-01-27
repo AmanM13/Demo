@@ -23,26 +23,26 @@
        state: started
     - name: cloning dockerfile
       git:
-       repo: https://github.com/InfernoVirus/phpcalculator.git
-       dest: /phpcalculator
+       repo: https://github.com/abhivaidya07/Devops.git
+       dest: /Devops
        force: yes
        update: yes
     - name: chang perm
       file:
-       path: /phpcalculator/Dockerfile
+       path: /Devops/Dockerfile
        mode: 777
     - name: building dockerfile
       docker_image:
-       name: php-cal
+       name: devops
        #state: present
        #force_source: true
        build:
-        path: /phpcalculator
+        path: /Devops
        source: build
     - name: running container
       docker_container:
-       name: php-calculator
-       image: php-cal
+       name: Devops
+       image: devops
        ports:
-        - "80:8080"
+        - "80:18080"
        state: started
