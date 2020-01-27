@@ -1,0 +1,30 @@
+---
+ - name: For Centos
+   hosts: localhost
+   tasks:
+    - name: Installing epel repo
+      yum:
+       name: epel-release
+       state: present
+    - name: Installing python-pip
+      yum:
+       name: python-pip
+       state: present
+    - name: Installing docker-py
+      pip:
+       name: docker-py
+    - name: Installing docker
+      yum: 
+       name: docker
+       state: present
+    - name: starting service
+      service:
+       name: docker
+       state: started
+    - name: Pulling and Running Image
+      docker_container:
+       name: myc1
+       image: httpd
+       pull: true
+       interactive: true
+        
