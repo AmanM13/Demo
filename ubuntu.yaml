@@ -1,0 +1,27 @@
+---
+ - name: For Ubuntu
+   hosts: host2
+   tasks:
+    - name: Configuring repos
+      script: script.sh
+    - name: Installing python-pip
+      apt:
+       name: python3-pip
+       state: present
+    - name: Installing docker-py
+      pip:
+       name: docker-py
+    - name: Installing Docker
+      apt:
+       name: docker-ce
+       state: present
+    - name: service restart
+      service: 
+       name: docker
+       state: started
+    - name: Pulling and Running Image
+      docker_container:
+       name: myc1
+       image: httpd
+       pull: true
+       interactive: true
