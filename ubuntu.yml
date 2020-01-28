@@ -1,24 +1,22 @@
 ---
- - name: For Centos
-   hosts: localhost
+ - name: For Ubuntu
+   hosts: host2
    tasks:
-    - name: Installing epel repo
-      yum:
-       name: epel-release
-       state: present
+    - name: Configuring repos
+      script: script.sh
     - name: Installing python-pip
-      yum:
-       name: python-pip
+      apt:
+       name: python3-pip
        state: present
     - name: Installing docker-py
       pip:
        name: docker-py
-    - name: Installing docker
-      yum: 
-       name: docker
+    - name: Installing Docker
+      apt:
+       name: docker-ce
        state: present
-    - name: starting service
-      service:
+    - name: service restart
+      service: 
        name: docker
        state: started
     - name: cloning dockerfile
