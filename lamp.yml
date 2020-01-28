@@ -1,6 +1,6 @@
 ---  
  - name: configure lamp server
-   hosts: centvm
+   hosts: localhost
    become: true
    tasks:
        - name: install lamp packages
@@ -54,6 +54,11 @@
          copy:
               src: /root/Demo/index.php
               dest: /var/www/html/
+       - name: edit conf
+         replace:
+              path: /etc/httpd/conf/httpd.conf
+              regexp: "DirectoryIndex index.html"
+              replace: "DirectoryIndex index.html index.php"
        - name: restart httpd
          service: 
                name: httpd
