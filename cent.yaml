@@ -44,4 +44,4 @@
        name: php-calculator
        image: php-cal
        ports:
-        - "80:18080"
+        - "18080:80"
