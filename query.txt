@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS `studentinfo` (
+  `srno` int(10) NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(255) NOT NULL,
+  `rollno` varchar(255) NOT NULL,
+  `class` varchar(255) NOT NULL,
+  `div` varchar(255) NOT NULL,
+  PRIMARY KEY (`srno`)
+);
+GRANT ALL ON schoolinfo.* TO 'root'@localhost IDENTIFIED BY 'redhat';
+
+FLUSH PRIVILEGES;
+
+INSERT INTO `studentinfo` (`srno`, `fullname`, `rollno`, `class`, `div`) VALUES
+(1, 'Rushikesh Deshpande', '17', '12th', 'A'),
+(2, 'Chaitanya Kasar', '12', '12th', 'B'),
+(3, 'Pratik Gaikwad', '25', '12th', 'A'),
+(4, 'Harsha Chitale', '11', '12th', 'B');
+

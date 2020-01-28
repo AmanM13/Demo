@@ -1,0 +1,60 @@
+---  
+ - name: configure lamp server
+   hosts: centvm
+   become: true
+   tasks:
+       - name: install lamp packages
+         yum:
+            name:
+                 - httpd
+                 - mariadb-server
+                 - MySQL-python
+                 - php-mysql
+                 - php
+            state: latest
+       - name: service start
+         service:
+              name: httpd
+              state: started
+              enabled: yes
+       - name: start mariadb service
+         service:
+               name: mariadb
+               state: started
+               enabled: yes
+       - name: update mariaDB root password
+         mysql_user:
+              user: root
+              password: redhat
+              host: localhost
+              check_implicit_admin: true
+              login_user: root
+              login_password: redhat
+              priv: "*.*:ALL,GRANT"
+              login_unix_socket: /var/lib/mysql/mysql.sock
+       - name: create database
+         mysql_db:
+               name: schoolinfo
+               login_user: root
+               login_password: redhat
+               login_host: localhost
+               state: present
+       - name: Copy database Connection File
+         copy:
+              src: /root/Demo/conn.php
+              dest: /var/www/html
+       - name: Copy file to create table and data
+         copy:
+              src: /root/Demo/query.txt
+              dest: /root/
+       - name: create table with data
+         shell: mysql -u root  -predhat schoolinfo < /root/query.txt
+         ignore_errors: yes
+       - name: copy database connection file 
+         copy:
+              src: /root/Demo/index.php
+              dest: /var/www/html/
+       - name: restart httpd
+         service: 
+               name: httpd
+               state: restarted
