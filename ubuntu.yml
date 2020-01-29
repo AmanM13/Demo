@@ -21,7 +21,7 @@
        state: started
     - name: cloning dockerfile
       git:
-       repo: https://github.com/InfernoVirus/phpcalculator.git
+       repo: https://github.com/abhivaidya07/javascriptcal.git
        dest: /phpcalculator
        force: yes
        update: yes
