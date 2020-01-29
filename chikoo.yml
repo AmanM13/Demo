@@ -1,5 +1,5 @@
 ---
- - hosts: localhost
+ - hosts: centos
    become: yes
    tasks:
      - name: installing Docker

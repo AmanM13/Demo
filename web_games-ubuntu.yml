@@ -1,6 +1,6 @@
 ---
  - name: For Ubuntu
-   hosts: host2
+   hosts: ubuntu
    tasks:
     - name: Configuring repos
       script: script.sh

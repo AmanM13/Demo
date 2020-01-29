@@ -1,6 +1,6 @@
 ---
  - name: For Centos
-   hosts: localhost
+   hosts: centos
    tasks:
     - name: Installing epel repo
       yum:

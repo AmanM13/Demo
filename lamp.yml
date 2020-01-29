@@ -1,6 +1,6 @@
 ---  
  - name: configure lamp server
-   hosts: localhost
+   hosts: centos
    become: true
    tasks:
        - name: install lamp packages
