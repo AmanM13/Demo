@@ -20,7 +20,7 @@
        name: docker
        state: started
     - name: download game image
-       docker_container:
+      docker_container:
         name: web-game
         image: docker.io/abhijeet45/web_games
         state: started

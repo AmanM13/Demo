@@ -20,7 +20,7 @@
        name: docker
        state: started
     - name: download mariyo image
-       docker_container:
+      docker_container:
         name: mariyo
         image: docker.io/pengbai/docker-supermario
         state: started

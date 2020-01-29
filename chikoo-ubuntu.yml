@@ -20,7 +20,7 @@
        name: docker
        state: started
     - name: download chikoo's image
-       docker_container:
+      docker_container:
         name: chikoo
         image: docker.io/hrushipotbhare/games
         state: started
