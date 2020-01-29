@@ -9,7 +9,7 @@
      - name: restart service
        service:
         name: docker
-        state: restarted
+        state: started
      - name: Creating new repo for cent os 
        yum:
         name: epel-release
