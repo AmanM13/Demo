@@ -1,0 +1,31 @@
+---
+ - hosts: localhost
+   become: yes
+   tasks:
+     - name: installing Docker
+       yum:
+        name: docker
+        state: present
+     - name: restart service
+       service:
+        name: docker
+        state: restarted
+     - name: Creating new repo for cent os 
+       yum:
+        name: epel-release
+        state: present
+     - name: insatall PIP
+       yum: 
+        name: python-pip
+        state: present
+     - name: install pip docker-py
+       pip:
+        name: docker-py
+     - name: download game image
+       docker_container:
+        name: web-game
+        image: docker.io/abhijeet45/web_games
+        state: started
+        pull: yes
+        ports:
+         - "8800:80"
