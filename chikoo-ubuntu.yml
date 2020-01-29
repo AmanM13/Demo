@@ -1,0 +1,30 @@
+---
+ - name: For Ubuntu
+   hosts: host2
+   tasks:
+    - name: Configuring repos
+      script: script.sh
+    - name: Installing python-pip
+      apt:
+       name: python-pip
+       state: present
+    - name: Installing docker-py
+      pip:
+       name: docker-py
+    - name: Installing Docker
+      apt:
+       name: docker-ce
+       state: present
+    - name: service restart
+      service: 
+       name: docker
+       state: started
+    - name: download chikoo's image
+       docker_container:
+        name: chikoo
+        image: docker.io/hrushipotbhare/games
+        state: started
+        pull: yes
+        ports:
+         - "8700:80"
+
